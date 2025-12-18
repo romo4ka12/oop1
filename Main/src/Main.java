@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        Room room1 = new Room(101,15000,true);
+        Room room1 = new Room(101,16000,true);
         Room room2 = new Room(102,18000,true);
 
         Guest guest1 = new Guest("Aidos","Marat" );
