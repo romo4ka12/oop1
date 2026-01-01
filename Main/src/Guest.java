@@ -19,6 +19,22 @@ public class Guest {
     }
     public void setSecondName(String secondName){
         this.secondName = secondName;
-
+    }
+    @Override
+    public String toString(){
+        return "Guest: " + name + " " + secondName;
+    }
+    @Override
+    public boolean equals(Object o){
+        if(this == o) {
+            return true;
+        }
+        if (!(o instanceof Guest)) return false;
+        Guest guest = (Guest) o;
+        return java.util.Objects.equals(name, guest.name) && java.util.Objects.equals(secondName, guest.secondName);
+    }
+    @Override
+    public int hashCode(){
+        return java.util.Objects.hash(name,secondName);
     }
 }

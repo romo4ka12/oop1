@@ -1,36 +1,82 @@
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Room> hotelRooms = new ArrayList<>();
+        hotelRooms.add(new Room(101, 16000, true));
+        hotelRooms.add(new Room(102, 12000, true));
+        hotelRooms.add(new Room(103, 25000, false));
+        hotelRooms.add(new Room(104, 18000, true));
 
-        Room room1 = new Room(101,16000,true);
-        Room room2 = new Room(102,18000,true);
+        while (true) {
+            System.out.println("1. List all rooms");
+            System.out.println("2. Show only available rooms");
+            System.out.println("3. Sort by price");
+            System.out.println("4. Find room by number");
+            System.out.println("5. Create VIP Booking");
+            System.out.println("0. Exit");
+            System.out.print("Choose option:");
 
-        Guest guest1 = new Guest("Aidos","Marat" );
+            int choice = scanner.nextInt();
+            if (choice == 0) {
+                break;
+            }
 
-        Booking booking1 = new Booking(room1, guest1, 3);
+            switch (choice) {
+                case 1:
+                    System.out.println("\nAll Rooms");
+                    for (int i = 0; i < hotelRooms.size(); i++) {
+                        System.out.println(hotelRooms.get(i));
+                    }
+                    break;
 
-        System.out.println("Room number: " + room1.getRoomNumber());
-        System.out.println("Price: " + room1.getPricePerNight());
-        System.out.println("Available: " + room1.isAvailable());
+                case 2:
+                    System.out.println("\nAvailable Rooms");
+                    for (int i = 0; i < hotelRooms.size(); i++) {
+                        Room r = hotelRooms.get(i);
+                        if (r.isAvailable()) {
+                            System.out.println(r);
+                        }
+                    }
+                    break;
 
-        System.out.println("Name: " + guest1.getName());
-        System.out.println("Second Name: " + guest1.getSecondName());
+                case 3:
+                    hotelRooms.sort(Comparator.comparingDouble(Room::getPricePerNight));
+                    System.out.println("\nSorted by Price");
+                    for (int i = 0; i < hotelRooms.size(); i++) {
+                        System.out.println(hotelRooms.get(i));
+                    }
+                    break;
 
-        System.out.println("Guest: " + booking1.getGuest().getName());
-        System.out.println("Room number: " + booking1.getRoom().getRoomNumber());
-        System.out.println("Nights: " + booking1.getNights());
-        System.out.println("Total price: " + booking1.calculateTotalPrice());
+                case 4:
+                    System.out.print("Enter room number: ");
+                    int num = scanner.nextInt();
+                    boolean found = false;
+                    for (int i = 0; i < hotelRooms.size(); i++) {
+                        Room r = hotelRooms.get(i);
+                        if (r.getRoomNumber() == num) {
+                            System.out.println("Result: " + r);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) System.out.println("Room not found.");
+                    break;
 
+                case 5:
+                    System.out.println("\nCreating VIP Booking Demo");
+                    Room room = hotelRooms.get(0);
+                    Guest vip = new VIPGuest("Aidos", "Marat", 0.20);
+                    Booking booking = new Booking(room, vip, 5);
+                    System.out.println(booking);
+                    break;
 
-        
-        if(room1.getPricePerNight() > room2.getPricePerNight()) {
-            System.out.println("Room 1 is more expensive than Room 2");
+                default:
+                    System.out.println("Invalid choice.");
+            }
         }
-        else if(room1.getPricePerNight() < room2.getPricePerNight()) {
-            System.out.println("Room 2 is more expensive than Room 1");
-        }
-        else{
-            System.out.println("The price for both rooms is the same.");
-        }
-        }
 
+        scanner.close();
     }
+}

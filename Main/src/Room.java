@@ -30,5 +30,30 @@ public class Room {
         this.available = available;
     }
 
+    @Override
+    public String toString(){
+        if(available) {
+            return "Room #" + roomNumber + "($" + pricePerNight + " per night, is " + "available" + ")";
+        }
+        else{
+            return "Room #" + roomNumber + "($" + pricePerNight + " per night, is " + "not available" + ")";
+        }
+    }
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o) {
+            return true;
+        }
+        if(!(o instanceof Room)) {
+            return false;
+        }
+        Room room = (Room) o;
+        return roomNumber == room.roomNumber;
+    }
+
+    @Override
+    public int hashCode(){
+        return Integer.hashCode(roomNumber);
+    }
 }
