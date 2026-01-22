@@ -1,6 +1,5 @@
 import data.RoomDAO;
 import entities.*;
-import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.*;
@@ -30,35 +29,23 @@ public class Main {
                     System.out.print("Available (true/false): ");
                     boolean avail = sc.nextBoolean();
 
-                    try {
-                        dao.insert(new Room(num, price, avail));
-                        System.out.println("Success.");
-                    } catch (SQLException e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
+                    dao.insert(new Room(num, price, avail));
+                    System.out.println("Success.");
                     break;
 
                 case 2:
-                    try {
-                        List<Room> rooms = dao.readAll();
-                        for (int i = 0; i < rooms.size(); i++) {
-                            Room r = rooms.get(i);
-                            System.out.println(r);
-                        }
-                    } catch (SQLException e) {
-                        System.out.println("Error: " + e.getMessage());
+                    List<Room> rooms = dao.readAll();
+                    for (int i = 0; i < rooms.size(); i++) {
+                        Room r = rooms.get(i);
+                        System.out.println(r);
                     }
                     break;
 
                 case 3:
                     System.out.print("Room number to delete: ");
                     int id = sc.nextInt();
-                    try {
-                        dao.delete(id);
-                        System.out.println("Deleted.");
-                    } catch (SQLException e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
+                    dao.delete(id);
+                    System.out.println("Deleted.");
                     break;
 
                 case 4: {
@@ -69,15 +56,11 @@ public class Main {
                     double price1 = sc.nextDouble();
                     sc.nextLine();
 
-                    try {
-                        dao.updatePrice(num1, price1);
-                        System.out.println("Price updated successfully!");
-                    } catch (SQLException e) {
-                        System.out.println("Update error: " + e.getMessage());
-                    }
+                    dao.updatePrice(num1, price1);
+                    System.out.println("Price updated successfully!");
                     break;
                 }
-                case 5:{
+                case 5: {
                     return;
                 }
             }
