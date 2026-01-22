@@ -41,7 +41,10 @@ public class Main {
                 case 2:
                     try {
                         List<Room> rooms = dao.readAll();
-                        for (Room r : rooms) System.out.println(r);
+                        for (int i = 0; i < rooms.size(); i++) {
+                            Room r = rooms.get(i);
+                            System.out.println(r);
+                        }
                     } catch (SQLException e) {
                         System.out.println("Error: " + e.getMessage());
                     }
