@@ -1,9 +1,11 @@
+package entities;
+
 public class Booking {
     private Room room;
     private Guest guest;
     private int nights;
 
-    public Booking(Room room,Guest guest, int nights){
+    public Booking(Room room, Guest guest, int nights){
         this.room = room;
         this.guest = guest;
         if(isValidNights(nights)) {
@@ -28,7 +30,7 @@ public class Booking {
 
     private boolean isValidNights(int nights){
         return nights > 0 && nights <= 31;
-    }
+    } // Incapsulation
 
     public double calculateTotalPrice(){
         double price = room.getPricePerNight() * nights;
@@ -41,7 +43,7 @@ public class Booking {
 
     @Override
     public String toString(){
-        return "Booking details: \n" + guest.toString() +"\n" + room.toString() + "\n" + "Duration:" + nights + "nights \n" + "Total Price: " + calculateTotalPrice() + " Tenge";
+        return "entities.Booking details: \n" + guest.toString() +"\n" + room.toString() + "\n" + "Duration:" + nights + "nights \n" + "Total Price: " + calculateTotalPrice() + " Tenge";
     }
 
     @Override

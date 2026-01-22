@@ -1,3 +1,5 @@
+package entities;
+
 public class Guest {
     private String name;
     private String secondName;
@@ -22,16 +24,18 @@ public class Guest {
     }
     @Override
     public String toString(){
-        return "Guest: " + name + " " + secondName;
+        return "entities.Guest: " + name + " " + secondName;
     }
     @Override
     public boolean equals(Object o){
-        if(this == o) {
+        if(this == o){
             return true;
         }
-        if (!(o instanceof Guest)) return false;
+        else if(!(o instanceof Guest)){
+            return false;
+        }
         Guest guest = (Guest) o;
-        return java.util.Objects.equals(name, guest.name) && java.util.Objects.equals(secondName, guest.secondName);
+        return guest.name == name && guest.secondName == secondName;
     }
     @Override
     public int hashCode(){

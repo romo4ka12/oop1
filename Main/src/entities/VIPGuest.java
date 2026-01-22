@@ -1,3 +1,5 @@
+package entities;
+
 public class VIPGuest extends Guest {
     private double discount;
 

@@ -1,3 +1,5 @@
+package entities;
+
 public class Room {
     private int roomNumber;
     private double pricePerNight;
@@ -33,10 +35,10 @@ public class Room {
     @Override
     public String toString(){
         if(available) {
-            return "Room #" + roomNumber + "($" + pricePerNight + " per night, is " + "available" + ")";
+            return "entities.Room #" + roomNumber + "($" + pricePerNight + " per night, is " + "available" + ")";
         }
         else{
-            return "Room #" + roomNumber + "($" + pricePerNight + " per night, is " + "not available" + ")";
+            return "entities.Room #" + roomNumber + "($" + pricePerNight + " per night, is " + "not available" + ")";
         }
     }
 
